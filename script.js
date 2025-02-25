@@ -1,4 +1,23 @@
-const SHEET_URL = "YOUR_WEB_APP_URL"; // Replace with the Google Apps Script Web App URL
+function doGet(e) {
+    return ContentService.createTextOutput(JSON.stringify(readData())).setMimeType(ContentService.MimeType.JSON);
+}
+
+function readData() {
+    var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID").getActiveSheet();
+    return sheet.getDataRange().getValues();
+}
+
+function writeData(data) {
+    var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID").getActiveSheet();
+    sheet.appendRow(data);
+    return "Success";
+}
+
+function doPost(e) {
+    var params = JSON.parse(e.postData.contents);
+    return ContentService.createTextOutput(writeData(params.data)).setMimeType(ContentService.MimeType.TEXT);
+}
+
 
 // Read Data
 async function fetchData() {
