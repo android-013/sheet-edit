@@ -1,4 +1,4 @@
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwWY5BiJHAcYeTZGcdmoM0smqdmK4ke-dQxnnYb2phOv6Ga8a1LThsSV6t91DFaQK57/exec"; // Replace with the Google Apps Script Web App UR
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbySLGrc3rw2i24eOcPxXCeYzIOC_OQFDo_U0_4n6dV43BEmxa72NdEXlvBS7_xQfDty/exec"; // Replace with the Google Apps Script Web App UR
 
 // Read Data
 async function fetchData() {
@@ -84,8 +84,6 @@ async function deleteRow(row) {
     alert(await response.text());
     fetchData(); // Reload Data
 }
-
-
 
 // Write Data
 async function writeToSheet() {
