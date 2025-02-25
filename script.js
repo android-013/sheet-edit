@@ -69,6 +69,23 @@ async function editRow(row) {
     fetchData(); // Reload Data
 }
 
+async function deleteRow(row) {
+    let confirmDelete = confirm("Are you sure you want to delete this row?");
+    if (!confirmDelete) return;
+
+    let payload = { action: "delete", row: row };
+    
+    let response = await fetch(SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" }
+    });
+
+    alert(await response.text());
+    fetchData(); // Reload Data
+}
+
+
 
 // Write Data
 async function writeToSheet() {
