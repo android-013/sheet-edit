@@ -18,22 +18,40 @@ function displayData(data) {
     tableHeader.innerHTML = "";
     tableBody.innerHTML = "";
 
+    // Create table headers
     data[0].forEach(header => {
         let th = document.createElement("th");
         th.textContent = header;
         tableHeader.appendChild(th);
     });
 
-    data.slice(1).forEach(row => {
+    // Add "Actions" column
+    let th = document.createElement("th");
+    th.textContent = "Actions";
+    tableHeader.appendChild(th);
+
+    // Populate table rows
+    data.slice(1).forEach((row, rowIndex) => {
         let tr = document.createElement("tr");
+        
         row.forEach(cell => {
             let td = document.createElement("td");
             td.textContent = cell;
             tr.appendChild(td);
         });
+
+        // Add Edit & Delete Buttons
+        let actionTd = document.createElement("td");
+        actionTd.innerHTML = `
+            <button onclick="editRow(${rowIndex + 1})">Edit</button>
+            <button onclick="deleteRow(${rowIndex + 1})">Delete</button>
+        `;
+        tr.appendChild(actionTd);
+
         tableBody.appendChild(tr);
     });
 }
+
 
 // Write Data
 async function writeToSheet() {
