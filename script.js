@@ -11,6 +11,7 @@ async function fetchData() {
     }
 }
 
+
 function displayData(data) {
     const tableHeader = document.getElementById("table-header");
     const tableBody = document.getElementById("table-body");
