@@ -3,7 +3,7 @@ const SHEET_URL = "https://script.google.com/macros/s/AKfycbwWY5BiJHAcYeTZGcdmoM
 // Read Data
 async function fetchData() {
     try {
-        let response = await fetch("https://script.google.com/macros/s/AKfycbwWY5BiJHAcYeTZGcdmoM0smqdmK4ke-dQxnnYb2phOv6Ga8a1LThsSV6t91DFaQK57/exec");
+        let response = await fetch(SHEET_URL);
         let data = await response.json();
         displayData(data);
     } catch (error) {
@@ -46,21 +46,22 @@ async function writeToSheet() {
     }
 
     let payload = { data: [data1, data2] };
-    
+
     try {
-        let response = await fetch("https://script.google.com/macros/s/AKfycbwWY5BiJHAcYeTZGcdmoM0smqdmK4ke-dQxnnYb2phOv6Ga8a1LThsSV6t91DFaQK57/exec", {
+        let response = await fetch(SHEET_URL, {
             method: "POST",
             body: JSON.stringify(payload),
             headers: { "Content-Type": "application/json" }
         });
-        
+
         let result = await response.text();
-        alert(result);
+        alert(result); // Shows "Success" if writing works
         fetchData(); // Reload Data
     } catch (error) {
         console.error("Error writing data:", error);
     }
 }
+
 
 // Load Data on Page Load
 fetchData();
