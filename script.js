@@ -1,28 +1,9 @@
-function doGet(e) {
-    return ContentService.createTextOutput(JSON.stringify(readData())).setMimeType(ContentService.MimeType.JSON);
-}
-
-function readData() {
-    var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID").getActiveSheet();
-    return sheet.getDataRange().getValues();
-}
-
-function writeData(data) {
-    var sheet = SpreadsheetApp.openById("YOUR_SHEET_ID").getActiveSheet();
-    sheet.appendRow(data);
-    return "Success";
-}
-
-function doPost(e) {
-    var params = JSON.parse(e.postData.contents);
-    return ContentService.createTextOutput(writeData(params.data)).setMimeType(ContentService.MimeType.TEXT);
-}
-
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwWY5BiJHAcYeTZGcdmoM0smqdmK4ke-dQxnnYb2phOv6Ga8a1LThsSV6t91DFaQK57/exec"; // Replace with the Google Apps Script Web App UR
 
 // Read Data
 async function fetchData() {
     try {
-        let response = await fetch(SHEET_URL);
+        let response = await fetch("https://script.google.com/macros/s/AKfycbwWY5BiJHAcYeTZGcdmoM0smqdmK4ke-dQxnnYb2phOv6Ga8a1LThsSV6t91DFaQK57/exec");
         let data = await response.json();
         displayData(data);
     } catch (error) {
@@ -67,7 +48,7 @@ async function writeToSheet() {
     let payload = { data: [data1, data2] };
     
     try {
-        let response = await fetch(SHEET_URL, {
+        let response = await fetch("https://script.google.com/macros/s/AKfycbwWY5BiJHAcYeTZGcdmoM0smqdmK4ke-dQxnnYb2phOv6Ga8a1LThsSV6t91DFaQK57/exec", {
             method: "POST",
             body: JSON.stringify(payload),
             headers: { "Content-Type": "application/json" }
