@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Read & Write</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Google Sheets Data</h2>
+    
+    <table id="data-table">
+        <thead>
+            <tr id="table-header"></tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+    <h3>Add Data</h3>
+    <input type="text" id="data1" placeholder="Column 1">
+    <input type="text" id="data2" placeholder="Column 2">
+    <button onclick="writeToSheet()">Add Row</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
