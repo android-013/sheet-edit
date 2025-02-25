@@ -52,6 +52,23 @@ function displayData(data) {
     });
 }
 
+//rowIndex is 1-based
+async function editRow(row) {
+    let newData = prompt("Enter new data (comma-separated):");
+    if (!newData) return;
+    
+    let payload = { action: "update", row: row, data: newData.split(",") };
+    
+    let response = await fetch(SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" }
+    });
+
+    alert(await response.text());
+    fetchData(); // Reload Data
+}
+
 
 // Write Data
 async function writeToSheet() {
